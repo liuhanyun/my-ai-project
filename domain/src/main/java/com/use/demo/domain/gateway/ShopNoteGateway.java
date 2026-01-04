@@ -1,0 +1,16 @@
+package com.use.demo.domain.gateway;
+
+import com.use.demo.domain.entity.ShopNote;
+import java.util.List;
+
+public interface ShopNoteGateway {
+    ShopNote create(ShopNote shopNote);
+
+    ShopNote findById(Integer id);
+
+    List<ShopNote> findAll();
+
+    ShopNote update(Integer id, ShopNote shopNote);
+
+    void delete(Integer id);
+}

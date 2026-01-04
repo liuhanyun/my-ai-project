@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: my-ai-project
+
+logging:
+  level:
+    root: INFO
+    com.use.demo: INFO

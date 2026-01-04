@@ -1,0 +1,42 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.18' apply false
+    id 'io.spring.dependency-management' version '1.1.4' apply false
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+
+    group = 'com.use'
+    version = '0.0.1-SNAPSHOT'
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17)
+        }
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-dependencies:2.7.18"
+        }
+        dependencies {
+            dependency "com.mysql:mysql-connector-j:8.0.33"
+            dependency "com.baomidou:mybatis-plus-boot-starter:3.5.5"
+            dependency "org.mybatis.generator:mybatis-generator-core:1.4.2"
+            dependency "org.mapstruct:mapstruct:1.5.5.Final"
+            dependency "org.mapstruct:mapstruct-processor:1.5.5.Final"
+            dependency "org.projectlombok:lombok-mapstruct-binding:0.2.0"
+            dependency "org.mybatis:mybatis:3.5.15"
+            dependency "net.logstash.logback:logstash-logback-encoder:6.6"
+        }
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}

@@ -1,0 +1,8 @@
+rootProject.name = 'my-ai-project'
+
+include 'starter'
+include 'adapter'
+include 'app'
+include 'domain'
+include 'infrastructure'
+include 'client'

@@ -1,0 +1,11 @@
+# Ignore IDE and Gradle state
+.idea/
+.gradle/
+
+# Gradle build outputs
+build/
+**/build/
+
+# OS files
+.DS_Store
+Thumbs.db

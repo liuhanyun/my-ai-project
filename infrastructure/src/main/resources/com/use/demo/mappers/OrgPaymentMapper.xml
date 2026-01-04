@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.use.demo.infrastructure.mapper.OrgPaymentMapper">
+  <resultMap id="BaseResultMap" type="com.use.demo.infrastructure.dataobject.OrgPaymentDO">
+    
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="payment_uid" jdbcType="VARCHAR" property="paymentUid" />
+    <result column="previous_payment_uid" jdbcType="VARCHAR" property="previousPaymentUid" />
+    <result column="owner_payment_uid" jdbcType="VARCHAR" property="ownerPaymentUid" />
+    <result column="pay_code" jdbcType="VARCHAR" property="payCode" />
+    <result column="pay_name" jdbcType="VARCHAR" property="payName" />
+    <result column="pay_type" jdbcType="VARCHAR" property="payType" />
+    <result column="is_active" jdbcType="BIT" property="isActive" />
+    <result column="is_owner_active" jdbcType="BIT" property="isOwnerActive" />
+    <result column="is_archived" jdbcType="BIT" property="isArchived" />
+    <result column="revenue_type" jdbcType="VARCHAR" property="revenueType" />
+    <result column="income_can_be_invoiced" jdbcType="BIT" property="incomeCanBeInvoiced" />
+    <result column="applied_channels" jdbcType="VARCHAR" property="appliedChannels" />
+    <result column="payment_channel" jdbcType="VARCHAR" property="paymentChannel" />
+    <result column="is_discount_reason_required" jdbcType="BIT" property="isDiscountReasonRequired" />
+    <result column="financial_account" jdbcType="VARCHAR" property="financialAccount" />
+    <result column="source_type" jdbcType="INTEGER" property="sourceType" />
+    <result column="is_delete" jdbcType="BIT" property="isDelete" />
+    <result column="pay_extend_type" jdbcType="VARCHAR" property="payExtendType" />
+    <result column="_data_id_" jdbcType="VARCHAR" property="dataId" />
+    <result column="pay_type_id" jdbcType="BIGINT" property="payTypeId" />
+    <result column="payment_method" jdbcType="VARCHAR" property="paymentMethod" />
+    <result column="payment_method_subtype" jdbcType="VARCHAR" property="paymentMethodSubtype" />
+    <result column="un_support_biz_type" jdbcType="VARCHAR" property="unSupportBizType" />
+    <result column="open_drawer" jdbcType="BIT" property="openDrawer" />
+    <result column="seq" jdbcType="BIGINT" property="seq" />
+    <result column="platform_code" jdbcType="VARCHAR" property="platformCode" />
+    <result column="platform_payment_uid" jdbcType="VARCHAR" property="platformPaymentUid" />
+    <result column="pay_icon" jdbcType="VARCHAR" property="payIcon" />
+    <result column="sub_parameters" jdbcType="LONGVARCHAR" property="subParameters" />
+    <result column="revenue_rules" jdbcType="LONGVARCHAR" property="revenueRules" />
+  </resultMap>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    
+    delete from tbl_org_payment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.use.demo.infrastructure.dataobject.OrgPaymentDO">
+    
+    insert into tbl_org_payment (id, payment_uid, previous_payment_uid, 
+      owner_payment_uid, pay_code, pay_name, 
+      pay_type, is_active, is_owner_active, 
+      is_archived, revenue_type, income_can_be_invoiced, 
+      applied_channels, payment_channel, is_discount_reason_required, 
+      financial_account, source_type, is_delete, 
+      pay_extend_type, _data_id_, pay_type_id, 
+      payment_method, payment_method_subtype, un_support_biz_type, 
+      open_drawer, seq, platform_code, 
+      platform_payment_uid, pay_icon, sub_parameters, 
+      revenue_rules)
+    values (#{id,jdbcType=INTEGER}, #{paymentUid,jdbcType=VARCHAR}, #{previousPaymentUid,jdbcType=VARCHAR}, 
+      #{ownerPaymentUid,jdbcType=VARCHAR}, #{payCode,jdbcType=VARCHAR}, #{payName,jdbcType=VARCHAR}, 
+      #{payType,jdbcType=VARCHAR}, #{isActive,jdbcType=BIT}, #{isOwnerActive,jdbcType=BIT}, 
+      #{isArchived,jdbcType=BIT}, #{revenueType,jdbcType=VARCHAR}, #{incomeCanBeInvoiced,jdbcType=BIT}, 
+      #{appliedChannels,jdbcType=VARCHAR}, #{paymentChannel,jdbcType=VARCHAR}, #{isDiscountReasonRequired,jdbcType=BIT}, 
+      #{financialAccount,jdbcType=VARCHAR}, #{sourceType,jdbcType=INTEGER}, #{isDelete,jdbcType=BIT}, 
+      #{payExtendType,jdbcType=VARCHAR}, #{dataId,jdbcType=VARCHAR}, #{payTypeId,jdbcType=BIGINT}, 
+      #{paymentMethod,jdbcType=VARCHAR}, #{paymentMethodSubtype,jdbcType=VARCHAR}, #{unSupportBizType,jdbcType=VARCHAR}, 
+      #{openDrawer,jdbcType=BIT}, #{seq,jdbcType=BIGINT}, #{platformCode,jdbcType=VARCHAR}, 
+      #{platformPaymentUid,jdbcType=VARCHAR}, #{payIcon,jdbcType=VARCHAR}, #{subParameters,jdbcType=LONGVARCHAR}, 
+      #{revenueRules,jdbcType=LONGVARCHAR})
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="com.use.demo.infrastructure.dataobject.OrgPaymentDO">
+    
+    update tbl_org_payment
+    set payment_uid = #{paymentUid,jdbcType=VARCHAR},
+      previous_payment_uid = #{previousPaymentUid,jdbcType=VARCHAR},
+      owner_payment_uid = #{ownerPaymentUid,jdbcType=VARCHAR},
+      pay_code = #{payCode,jdbcType=VARCHAR},
+      pay_name = #{payName,jdbcType=VARCHAR},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      is_active = #{isActive,jdbcType=BIT},
+      is_owner_active = #{isOwnerActive,jdbcType=BIT},
+      is_archived = #{isArchived,jdbcType=BIT},
+      revenue_type = #{revenueType,jdbcType=VARCHAR},
+      income_can_be_invoiced = #{incomeCanBeInvoiced,jdbcType=BIT},
+      applied_channels = #{appliedChannels,jdbcType=VARCHAR},
+      payment_channel = #{paymentChannel,jdbcType=VARCHAR},
+      is_discount_reason_required = #{isDiscountReasonRequired,jdbcType=BIT},
+      financial_account = #{financialAccount,jdbcType=VARCHAR},
+      source_type = #{sourceType,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=BIT},
+      pay_extend_type = #{payExtendType,jdbcType=VARCHAR},
+      _data_id_ = #{dataId,jdbcType=VARCHAR},
+      pay_type_id = #{payTypeId,jdbcType=BIGINT},
+      payment_method = #{paymentMethod,jdbcType=VARCHAR},
+      payment_method_subtype = #{paymentMethodSubtype,jdbcType=VARCHAR},
+      un_support_biz_type = #{unSupportBizType,jdbcType=VARCHAR},
+      open_drawer = #{openDrawer,jdbcType=BIT},
+      seq = #{seq,jdbcType=BIGINT},
+      platform_code = #{platformCode,jdbcType=VARCHAR},
+      platform_payment_uid = #{platformPaymentUid,jdbcType=VARCHAR},
+      pay_icon = #{payIcon,jdbcType=VARCHAR},
+      sub_parameters = #{subParameters,jdbcType=LONGVARCHAR},
+      revenue_rules = #{revenueRules,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    
+    select id, payment_uid, previous_payment_uid, owner_payment_uid, pay_code, pay_name, 
+    pay_type, is_active, is_owner_active, is_archived, revenue_type, income_can_be_invoiced, 
+    applied_channels, payment_channel, is_discount_reason_required, financial_account, 
+    source_type, is_delete, pay_extend_type, _data_id_, pay_type_id, payment_method, 
+    payment_method_subtype, un_support_biz_type, open_drawer, seq, platform_code, platform_payment_uid, 
+    pay_icon, sub_parameters, revenue_rules
+    from tbl_org_payment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    
+    select id, payment_uid, previous_payment_uid, owner_payment_uid, pay_code, pay_name, 
+    pay_type, is_active, is_owner_active, is_archived, revenue_type, income_can_be_invoiced, 
+    applied_channels, payment_channel, is_discount_reason_required, financial_account, 
+    source_type, is_delete, pay_extend_type, _data_id_, pay_type_id, payment_method, 
+    payment_method_subtype, un_support_biz_type, open_drawer, seq, platform_code, platform_payment_uid, 
+    pay_icon, sub_parameters, revenue_rules
+    from tbl_org_payment
+  </select>
+</mapper>

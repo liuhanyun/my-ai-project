@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.use.demo.infrastructure.mapper.ShopNoteMapper">
+  <resultMap id="BaseResultMap" type="com.use.demo.infrastructure.dataobject.ShopNoteDO">
+    
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="corporation_id" jdbcType="BIGINT" property="corporationId" />
+    <result column="brand_id" jdbcType="BIGINT" property="brandId" />
+    <result column="shop_id" jdbcType="BIGINT" property="shopId" />
+    <result column="note_uid" jdbcType="VARCHAR" property="noteUid" />
+    <result column="previous_note_uid" jdbcType="VARCHAR" property="previousNoteUid" />
+    <result column="owner_note_uid" jdbcType="VARCHAR" property="ownerNoteUid" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="note_type" jdbcType="VARCHAR" property="noteType" />
+    <result column="is_archived" jdbcType="BIT" property="isArchived" />
+    <result column="is_active" jdbcType="BIT" property="isActive" />
+    <result column="display_sequence" jdbcType="INTEGER" property="displaySequence" />
+    <result column="source_type" jdbcType="INTEGER" property="sourceType" />
+    <result column="create_type" jdbcType="INTEGER" property="createType" />
+    <result column="_data_id_" jdbcType="VARCHAR" property="dataId" />
+    <result column="sub_types" jdbcType="LONGVARCHAR" property="subTypes" />
+    <result column="applied_channels" jdbcType="LONGVARCHAR" property="appliedChannels" />
+  </resultMap>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    
+    delete from tbl_shop_note
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.use.demo.infrastructure.dataobject.ShopNoteDO">
+    
+    insert into tbl_shop_note (id, corporation_id, brand_id, 
+      shop_id, note_uid, previous_note_uid, 
+      owner_note_uid, note, note_type, 
+      is_archived, is_active, display_sequence, 
+      source_type, create_type, _data_id_, 
+      sub_types, applied_channels)
+    values (#{id,jdbcType=INTEGER}, #{corporationId,jdbcType=BIGINT}, #{brandId,jdbcType=BIGINT}, 
+      #{shopId,jdbcType=BIGINT}, #{noteUid,jdbcType=VARCHAR}, #{previousNoteUid,jdbcType=VARCHAR}, 
+      #{ownerNoteUid,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{noteType,jdbcType=VARCHAR}, 
+      #{isArchived,jdbcType=BIT}, #{isActive,jdbcType=BIT}, #{displaySequence,jdbcType=INTEGER}, 
+      #{sourceType,jdbcType=INTEGER}, #{createType,jdbcType=INTEGER}, #{dataId,jdbcType=VARCHAR}, 
+      #{subTypes,jdbcType=LONGVARCHAR}, #{appliedChannels,jdbcType=LONGVARCHAR})
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="com.use.demo.infrastructure.dataobject.ShopNoteDO">
+    
+    update tbl_shop_note
+    set corporation_id = #{corporationId,jdbcType=BIGINT},
+      brand_id = #{brandId,jdbcType=BIGINT},
+      shop_id = #{shopId,jdbcType=BIGINT},
+      note_uid = #{noteUid,jdbcType=VARCHAR},
+      previous_note_uid = #{previousNoteUid,jdbcType=VARCHAR},
+      owner_note_uid = #{ownerNoteUid,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      note_type = #{noteType,jdbcType=VARCHAR},
+      is_archived = #{isArchived,jdbcType=BIT},
+      is_active = #{isActive,jdbcType=BIT},
+      display_sequence = #{displaySequence,jdbcType=INTEGER},
+      source_type = #{sourceType,jdbcType=INTEGER},
+      create_type = #{createType,jdbcType=INTEGER},
+      _data_id_ = #{dataId,jdbcType=VARCHAR},
+      sub_types = #{subTypes,jdbcType=LONGVARCHAR},
+      applied_channels = #{appliedChannels,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    
+    select id, corporation_id, brand_id, shop_id, note_uid, previous_note_uid, owner_note_uid, 
+    note, note_type, is_archived, is_active, display_sequence, source_type, create_type, 
+    _data_id_, sub_types, applied_channels
+    from tbl_shop_note
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    
+    select id, corporation_id, brand_id, shop_id, note_uid, previous_note_uid, owner_note_uid, 
+    note, note_type, is_archived, is_active, display_sequence, source_type, create_type, 
+    _data_id_, sub_types, applied_channels
+    from tbl_shop_note
+  </select>
+</mapper>
