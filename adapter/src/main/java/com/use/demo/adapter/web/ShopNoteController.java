@@ -2,6 +2,7 @@ package com.use.demo.adapter.web;
 
 import com.use.demo.client.cmd.ShopNoteCreateCmd;
 import com.use.demo.client.cmd.ShopNoteUpdateCmd;
+import com.use.demo.common.PageResult;
 import com.use.demo.client.co.ShopNoteCO;
 import com.use.demo.client.query.ShopNoteQuery;
 import com.use.demo.client.service.ShopNoteService;
@@ -36,8 +37,8 @@ public class ShopNoteController {
     }
 
     @GetMapping
-    public List<ShopNoteCO> findAll(@ModelAttribute ShopNoteQuery query) {
-        return shopNoteService.findAll(query);
+    public PageResult<ShopNoteCO> findPage(@ModelAttribute ShopNoteQuery query) {
+        return shopNoteService.findPage(query);
     }
 
     @PutMapping("/{id}")

@@ -1,6 +1,8 @@
 package com.use.demo.infrastructure.gateway;
 
+import com.use.demo.common.Page;
 import com.use.demo.domain.entity.ShopNote;
+import com.use.demo.domain.entity.ShopNoteCondition;
 import com.use.demo.domain.gateway.ShopNoteGateway;
 import com.use.demo.infrastructure.converter.ShopNoteDOConverter;
 import com.use.demo.infrastructure.dataobject.ShopNoteDO;
@@ -33,11 +35,25 @@ public class ShopNoteGatewayImpl implements ShopNoteGateway {
     }
 
     @Override
-    public List<ShopNote> findAll() {
-        return shopNoteMapper.selectAll()
+    public Page<ShopNote> findPage(ShopNoteCondition condition) {
+        int page = condition != null && condition.getPage() != null && condition.getPage() > 0 ? condition.getPage() : 1;
+        int size = condition != null && condition.getSize() != null && condition.getSize() > 0 ? condition.getSize() : 20;
+        int offset = (page - 1) * size;
+        String noteType = condition == null ? null : condition.getNoteType();
+        String note = condition == null ? null : condition.getNote();
+
+        long total = shopNoteMapper.countByQuery(noteType, note);
+        List<ShopNote> records = shopNoteMapper.selectPage(noteType, note, offset, size)
             .stream()
             .map(shopNoteDOConverter::toDomain)
             .collect(Collectors.toList());
+
+        Page<ShopNote> result = new Page<>();
+        result.setTotal(total);
+        result.setPage(page);
+        result.setSize(size);
+        result.setRecords(records);
+        return result;
     }
 
     @Override

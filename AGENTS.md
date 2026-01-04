@@ -26,17 +26,18 @@ Use JUnit 5 for unit tests and name test classes after the unit under test (for 
 There is no Git history yet. Use Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`) and keep messages imperative. Pull requests should include a short summary, linked issues, and any migration or setup steps needed to validate the change locally. Add screenshots for UI or console output changes.
 
 ## Security & Configuration Tips
-Keep secrets out of source control. Use environment variables or a local `application-local.yml` ignored by Git, and document required keys in `application.yml` with safe defaults. Prefer Spring profiles for environment-specific settings (for example, `application-dev.yml`, `application-prod.yml`) and make the active profile explicit in startup docs (for example, `SPRING_PROFILES_ACTIVE=dev`). For logging, use Logback with JSON output, define levels per package in `application.yml` (for example, `com.use.demo` at `INFO`, noisy dependencies at `WARN`), and keep the schema consistent across environments. For Actuator, keep exposure minimal (for example, only `health` and `info`), disable sensitive endpoints by default, and require authentication in non-local environments.
+Keep secrets out of source control. Use environment variables or a local `application-local.yml` ignored by Git, and document required keys in `application.yml` with safe defaults. Prefer Spring profiles for environment-specific settings (for example, `application-dev.yml`, `application-prod.yml`) and make the active profile explicit in startup docs (for example, `SPRING_PROFILES_ACTIVE=dev`). For logging, use Logback with a plain-text pattern encoder, define levels per package in `application.yml` (for example, `com.use.demo` at `INFO`, noisy dependencies at `WARN`), and keep the format consistent across environments. For Actuator, keep exposure minimal (for example, only `health` and `info`), disable sensitive endpoints by default, and require authentication in non-local environments.
 When adding dependencies, prefer the newest versions that remain compatible with Spring Boot 2.7.18’s BOM.
 
-Example `logback-spring.xml` JSON encoder:
+Example `logback-spring.xml` pattern encoder:
 ```xml
 <configuration>
   <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-    <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+    <encoder>\r\n      <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>\r\n    </encoder>
   </appender>
   <root level="INFO">
     <appender-ref ref="CONSOLE" />
   </root>
 </configuration>
 ```
+

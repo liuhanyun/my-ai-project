@@ -1,11 +1,11 @@
-package com.use.demo.client.query;
+package com.use.demo.domain.entity;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class ShopNoteQuery {
+public class ShopNoteCondition {
     private String noteType;
     private String note;
     private Integer page;

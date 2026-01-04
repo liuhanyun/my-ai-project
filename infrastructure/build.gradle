@@ -1,4 +1,5 @@
 dependencies {
+    implementation project(':common')
     implementation project(':domain')
     implementation 'org.springframework:spring-context'
     implementation 'com.mysql:mysql-connector-j'

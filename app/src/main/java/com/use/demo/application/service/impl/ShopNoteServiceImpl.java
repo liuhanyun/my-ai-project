@@ -8,6 +8,9 @@ import com.use.demo.client.query.ShopNoteQuery;
 import com.use.demo.client.service.ShopNoteService;
 import com.use.demo.domain.entity.ShopNote;
 import com.use.demo.domain.gateway.ShopNoteGateway;
+import com.use.demo.common.PageResult;
+import com.use.demo.common.Page;
+import com.use.demo.domain.entity.ShopNoteCondition;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
@@ -35,11 +38,20 @@ public class ShopNoteServiceImpl implements ShopNoteService {
     }
 
     @Override
-    public List<ShopNoteCO> findAll(ShopNoteQuery query) {
-        return shopNoteGateway.findAll()
+    public PageResult<ShopNoteCO> findPage(ShopNoteQuery query) {
+        ShopNoteCondition condition = shopNoteDTOConverter.toCondition(query);
+        Page<ShopNote> page = shopNoteGateway.findPage(condition);
+        List<ShopNoteCO> records = page.getRecords()
             .stream()
             .map(shopNoteDTOConverter::toCO)
             .collect(Collectors.toList());
+
+        PageResult<ShopNoteCO> result = new PageResult<>();
+        result.setTotal(page.getTotal());
+        result.setPage(page.getPage());
+        result.setSize(page.getSize());
+        result.setRecords(records);
+        return result;
     }
 
     @Override

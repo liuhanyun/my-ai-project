@@ -1,5 +1,7 @@
 package com.use.demo.domain.gateway;
 
+import com.use.demo.common.Page;
+import com.use.demo.domain.entity.ShopNoteCondition;
 import com.use.demo.domain.entity.ShopNote;
 import java.util.List;
 
@@ -8,7 +10,7 @@ public interface ShopNoteGateway {
 
     ShopNote findById(Integer id);
 
-    List<ShopNote> findAll();
+    Page<ShopNote> findPage(ShopNoteCondition condition);
 
     ShopNote update(Integer id, ShopNote shopNote);
 

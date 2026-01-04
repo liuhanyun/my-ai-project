@@ -82,4 +82,33 @@
     _data_id_, sub_types, applied_channels
     from tbl_shop_note
   </select>
+
+  <select id="selectPage" resultMap="BaseResultMap">
+    select id, corporation_id, brand_id, shop_id, note_uid, previous_note_uid, owner_note_uid,
+    note, note_type, is_archived, is_active, display_sequence, source_type, create_type,
+    _data_id_, sub_types, applied_channels
+    from tbl_shop_note
+    <where>
+      <if test="noteType != null and noteType != ''">
+        and note_type = #{noteType}
+      </if>
+      <if test="note != null and note != ''">
+        and note like concat('%', #{note}, '%')
+      </if>
+    </where>
+    limit #{limit} offset #{offset}
+  </select>
+
+  <select id="countByQuery" resultType="long">
+    select count(1)
+    from tbl_shop_note
+    <where>
+      <if test="noteType != null and noteType != ''">
+        and note_type = #{noteType}
+      </if>
+      <if test="note != null and note != ''">
+        and note like concat('%', #{note}, '%')
+      </if>
+    </where>
+  </select>
 </mapper>

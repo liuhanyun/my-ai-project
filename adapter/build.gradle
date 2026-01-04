@@ -1,4 +1,5 @@
 dependencies {
+    implementation project(':common')
     implementation project(':app')
     implementation project(':client')
     implementation project(':domain')

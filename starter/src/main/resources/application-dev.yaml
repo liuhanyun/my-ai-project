@@ -1,13 +1,15 @@
 spring:
-#  profiles:
-#    active: dev
   datasource:
     url: jdbc:mysql://127.0.0.1:3366/db_resto_local_server
     username: root
     password: restosuite
 
-mybatis:
-  mapper-locations: classpath*:com/use/demo/mappers/*Mapper.xml
-
 mybatis-plus:
   mapper-locations: classpath*:com/use/demo/mappers/*Mapper.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+
+logging:
+  level:
+    root: INFO
+    com.use.demo.infrastructure.mapper: DEBUG
